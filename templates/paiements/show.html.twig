@@ -1,0 +1,36 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Paiements{% endblock %}
+
+{% block body %}
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h1>Paiement Details</h1>
+        <a type="button" class="btn btn-primary mb-3" href="{{ path('app_paiements_edit', {'id': paiement.id}) }}">Edit</a>
+        {{ include('paiements/_delete_form.html.twig') }}
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ paiement.id }}</td>
+                </tr>
+                <tr>
+                    <th>Mode</th>
+                    <td>{{ paiement.mode }}</td>
+                </tr>
+                <tr>
+                    <th>Montant</th>
+                    <td>{{ paiement.montant }}</td>
+                </tr>
+                <tr>
+                    <th>Archivee</th>
+                    <td>{{ paiement.archivee ? 'Yes' : 'No' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <a href="{{ path('app_paiements_index') }}">back to list</a>
+{% endblock %}
+
+

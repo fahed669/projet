@@ -1,0 +1,40 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Vehicules index{% endblock %}
+
+{% block body %}
+    <h1>Vehicules index</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Matricule</th>
+                <th>Couleur</th>
+                <th>Kilometrage</th>
+                <th>Archivee</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vehicule in vehicules %}
+            <tr>
+                <td>{{ vehicule.id }}</td>
+                <td>{{ vehicule.matricule }}</td>
+                <td>{{ vehicule.couleur }}</td>
+                <td>{{ vehicule.kilometrage }}</td>
+                <td>{{ vehicule.archivee ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_vehicules_show', {'id': vehicule.id}) }}">show</a>
+                    <a href="{{ path('app_vehicules_edit', {'id': vehicule.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_vehicules_new') }}">Create new</a>
+{% endblock %}

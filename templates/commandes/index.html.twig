@@ -1,0 +1,65 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Commandes index{% endblock %}
+{% block body %}
+
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold">
+            Commandes index
+        </h4>
+
+        <a type="button" class="btn btn-primary mb-3" href="{{ path('app_commandes_new') }}">Create new</a>
+
+        <div class="card">
+            <div class="table-responsive text-nowrap">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            {# <th>Date</th> #}
+                            <th>Adresse</th>
+                            {# <th>Archivee</th> #}
+                            <th>Client</th>
+                            <th>Vehicule</th>
+                            <th>Actions</th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        {% for commande in commandes %}
+                            <tr>
+                                <td>{{ commande.id }}</td>
+                                {# <td>{{ commande.date ? commande.date|date('Y-m-d') : '' }}</td> #}
+                                <td>{{ commande.adresse }}</td>
+                                {# <td>{{ commande.archivee ? 'Yes' : 'No' }}</td> #}
+                                                                                                <td>{{ commande.idClient }}</td>
+                                                                <td>{{ commande.idVehicule }}</td>
+
+                                <td>
+                                    <div class="dropdown">
+                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="{{ path('app_commandes_show', {'id': commande.id}) }}">Show</a>
+                                            <a class="dropdown-item" href="{{ path('app_commandes_edit', {'id': commande.id}) }}">Edit</a>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5">No records found</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+

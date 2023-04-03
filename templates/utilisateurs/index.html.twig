@@ -1,0 +1,89 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Utilisateurs index
+{% endblock %}
+
+{% block body %}
+	<div class="container-xxl flex-grow-1 container-p-y">
+		<h4 class="fw-bold">
+			Gestion Users
+		</h4>
+		<a type="button" class="btn btn-primary mb-3" href="{{ path('app_utilisateurs_new') }}">Create new</a>
+
+		<div class="card">
+			<div class="table-responsive text-nowrap">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Email</th>
+							<th>Cin</th>
+							<th>Mdp</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Num. Telephone</th>
+							<th>Date de naissance</th>
+							<th>Genre</th>
+							<th>Date de création</th>
+							<th>Role</th>
+							<th>Active</th>
+							<th>Adresse</th>
+							<th>Ville</th>
+							<th>Pays</th>
+							<th>Num. License</th>
+							<th>Date de license</th>
+							<th>Compétences</th>
+							<th>Disponibilité</th>
+							<th>Secteur</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody class="table-border-bottom-0">
+						{% for utilisateur in utilisateurs %}
+							<tr>
+								<td>{{ utilisateur.id }}</td>
+								<td>{{ utilisateur.email }}</td>
+								<td>{{ utilisateur.cin }}</td>
+								<td>{{ utilisateur.mdp }}</td>
+								<td>{{ utilisateur.nom }}</td>
+								<td>{{ utilisateur.prenom }}</td>
+								<td>{{ utilisateur.numtelephone }}</td>
+								<td>{{ utilisateur.datenaissance ? utilisateur.datenaissance|date('Y-m-d') : '' }}</td>
+								<td>{{ utilisateur.genre }}</td>
+								<td>{{ utilisateur.createddate ? utilisateur.createddate|date('Y-m-d H:i:s') : '' }}</td>
+								<td>{{ utilisateur.role }}</td>
+								<td>{{ utilisateur.active ? 'Yes' : 'No' }}</td>
+								<td>{{ utilisateur.adresse }}</td>
+								<td>{{ utilisateur.ville }}</td>
+								<td>{{ utilisateur.pays }}</td>
+								<td>{{ utilisateur.numlicense }}</td>
+								<td>{{ utilisateur.datelicense ? utilisateur.datelicense|date('Y-m-d') : '' }}</td>
+								<td>{{ utilisateur.competences }}</td>
+								<td>{{ utilisateur.disponibilite }}</td>
+								<td>{{ utilisateur.secteur }}</td>
+								<td>
+									<div class="dropdown">
+										<button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+											<i class="bx bx-dots-vertical-rounded"></i>
+										</button>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="{{ path('app_utilisateurs_show', {'id': utilisateur.id}) }}">Show</a>
+											<a class="dropdown-item" href="{{ path('app_utilisateurs_edit', {'id': utilisateur.id}) }}">Edit</a>
+										</div>
+									</div>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="21">No records found</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+
+{% endblock %}

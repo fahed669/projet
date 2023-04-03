@@ -1,0 +1,111 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Utilisateurs
+{% endblock %}
+
+{% block body %}
+
+	<div class="container-xxl flex-grow-1 container-p-y">
+		<h1>User Details</h1>
+		<a type="button" class="btn btn-primary mb-3" href="{{ path('app_utilisateurs_edit', {'id': utilisateur.id}) }}">Edit</a>
+		{{ include('utilisateurs/_delete_form.html.twig') }}
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ utilisateur.id }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ utilisateur.email }}</td>
+				</tr>
+				<tr>
+					<th>Cin</th>
+					<td>{{ utilisateur.cin }}</td>
+				</tr>
+				<tr>
+					<th>Mdp</th>
+					<td>{{ utilisateur.mdp }}</td>
+				</tr>
+				<tr>
+					<th>Nom</th>
+					<td>{{ utilisateur.nom }}</td>
+				</tr>
+				<tr>
+					<th>Prenom</th>
+					<td>{{ utilisateur.prenom }}</td>
+				</tr>
+				<tr>
+					<th>Numtelephone</th>
+					<td>{{ utilisateur.numtelephone }}</td>
+				</tr>
+				<tr>
+					<th>Datenaissance</th>
+					<td>{{ utilisateur.datenaissance ? utilisateur.datenaissance|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Genre</th>
+					<td>{{ utilisateur.genre }}</td>
+				</tr>
+				<tr>
+					<th>Createddate</th>
+					<td>{{ utilisateur.createddate ? utilisateur.createddate|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Role</th>
+					<td>{{ utilisateur.role }}</td>
+				</tr>
+				<tr>
+					<th>Active</th>
+					<td>{{ utilisateur.active ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>Adresse</th>
+					<td>{{ utilisateur.adresse }}</td>
+				</tr>
+				<tr>
+					<th>Ville</th>
+					<td>{{ utilisateur.ville }}</td>
+				</tr>
+				<tr>
+					<th>Pays</th>
+					<td>{{ utilisateur.pays }}</td>
+				</tr>
+				<tr>
+					<th>Numlicense</th>
+					<td>{{ utilisateur.numlicense }}</td>
+				</tr>
+				<tr>
+					<th>Datelicense</th>
+					<td>{{ utilisateur.datelicense ? utilisateur.datelicense|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Competences</th>
+					<td>{{ utilisateur.competences }}</td>
+				</tr>
+				<tr>
+					<th>Disponibilite</th>
+					<td>{{ utilisateur.disponibilite }}</td>
+				</tr>
+				<tr>
+					<th>Secteur</th>
+					<td>{{ utilisateur.secteur }}</td>
+				</tr>
+				<tr>
+					<th>Idabonnement</th>
+					<td>{{ utilisateur.idabonnement }}</td>
+				</tr>
+				<tr>
+					<th>Idconvention</th>
+					<td>{{ utilisateur.idconvention }}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+
+	{# <a href="{{ path('app_utilisateurs_index') }}">back to list</a> #}
+
+
+{% endblock %}

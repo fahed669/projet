@@ -1,0 +1,37 @@
+{% extends 'baseBack.html.twig' %}
+
+{% block title %}Commandes{% endblock %}
+
+{% block body %}
+
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h1>Commande Details</h1>
+        <a type="button" class="btn btn-primary mb-3" href="{{ path('app_commandes_edit', {'id': commande.id}) }}">Edit</a>
+        {{ include('commandes/_delete_form.html.twig') }}
+
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ commande.id }}</td>
+                </tr>
+                {# <tr> #}
+                    {# <th>Date</th> 
+                    <td>{{ commande.date ? commande.date|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr> #}
+                    <th>Adresse</th>
+                    <td>{{ commande.adresse }}</td>
+                </tr>
+                <tr>
+                    <th>Archivee</th>
+                    <td>{{ commande.archivee ? 'Yes' : 'No' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {# <a href="{{ path('app_commandes_index') }}">back to list</a> #}
+
+{% endblock %}
+
