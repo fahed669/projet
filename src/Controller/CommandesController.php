@@ -13,6 +13,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/commandes')]
 class CommandesController extends AbstractController
 {
+
+
+   
+
+    
+
+
     #[Route('/', name: 'app_commandes_index', methods: ['GET'])]
     public function index(EntityManagerInterface $entityManager): Response
     {
@@ -40,6 +47,25 @@ class CommandesController extends AbstractController
         }
 
         return $this->renderForm('commandes/new.html.twig', [
+            'commande' => $commande,
+            'form' => $form,
+        ]);
+    }
+    #[Route('/addfront', name: 'app_commandes', methods: ['GET', 'POST'])]
+    public function addfront(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $commande = new Commandes();
+        $form = $this->createForm(CommandesType::class, $commande);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($commande);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_paiements', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('commandes/addfront.html.twig', [
             'commande' => $commande,
             'form' => $form,
         ]);

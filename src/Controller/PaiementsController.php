@@ -45,6 +45,26 @@ class PaiementsController extends AbstractController
         ]);
     }
 
+    #[Route('/addfront', name: 'app_paiements', methods: ['GET', 'POST'])]
+    public function addfront(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $paiement = new Paiements();
+        $form = $this->createForm(PaiementsType::class, $paiement);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($paiement);
+            $entityManager->flush();
+
+           
+        }
+
+        return $this->renderForm('paiements/addfront.html.twig', [
+            'paiement' => $paiement,
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_paiements_show', methods: ['GET'])]
     public function show(Paiements $paiement): Response
     {
